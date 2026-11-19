@@ -1,0 +1,11 @@
+{
+  "name": "atlas-explore-a-historia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ATLAS — Fase 1 (protótipo funcional)",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/logic.test.mjs"
+  }
+}

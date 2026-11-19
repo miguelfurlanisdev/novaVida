@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ATLAS — Explore a História</title>
+  <meta name="description" content="O mundo muda. A história conecta tudo." />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div id="splash" aria-hidden="true"><div class="splash-logo">ATLAS</div><div class="splash-sub">O mundo muda. A história conecta tudo.</div></div>
+
+  <header class="topbar">
+    <button class="icon-btn only-mobile" id="btn-panel" aria-label="Abrir filtros e lista" aria-expanded="false">☰</button>
+    <a class="logo" href="#" id="logo" aria-label="ATLAS — início">ATLAS</a>
+    <nav class="nav" aria-label="Módulos">
+      <button data-mod="explorar" class="active">Explorar</button>
+      <button data-mod="linha">Linha do Tempo</button>
+      <button data-mod="conflitos" disabled title="Fase 2 — ainda não implementado">Conflitos</button>
+      <button data-mod="civilizacoes" disabled title="Fase 2 — ainda não implementado">Civilizações</button>
+      <button data-mod="laboratorio" disabled title="Fase 3 — ainda não implementado">Laboratório</button>
+      <button data-mod="arquivo">Arquivo</button>
+    </nav>
+    <label class="search"><span class="sr-only">Pesquisar acontecimentos</span>
+      <input id="q" type="search" placeholder="Pesquisar: Revolução Francesa, Roma, Lua…" autocomplete="off" />
+    </label>
+    <button class="icon-btn" id="btn-random" title="Exploração aleatória" aria-label="Exploração aleatória">⚄</button>
+    <button class="icon-btn" id="btn-fav-view" title="Mostrar favoritos" aria-label="Mostrar apenas favoritos" aria-pressed="false">★</button>
+  </header>
+
+  <main id="app">
+    <aside class="left" id="left" aria-label="Filtros e lista de acontecimentos">
+      <div class="left-head"><h2>Acontecimentos <span id="count" class="muted"></span></h2><button class="icon-btn only-desktop" id="btn-collapse" aria-label="Recolher painel" aria-expanded="true">‹</button></div>
+      <details open><summary>Categorias</summary><div id="f-cats" class="chips"></div></details>
+      <details><summary>Regiões</summary><div id="f-regs" class="chips"></div></details>
+      <details><summary>Camadas</summary>
+        <label class="check"><input type="checkbox" id="l-markers" checked /> Marcadores de acontecimentos</label>
+        <label class="check"><input type="checkbox" id="l-land" checked /> Continentes (Natural Earth)</label>
+        <p class="note">Fronteiras históricas: <b>sem camada</b> — ainda não há série territorial documentada nesta versão.</p>
+      </details>
+      <button class="link" id="btn-clear">Limpar filtros</button>
+      <ul id="list" class="list" role="list"></ul>
+    </aside>
+
+    <section class="stage" id="stage" aria-label="Globo interativo">
+      <div id="globe" class="globe"></div>
+      <div id="globe-status" class="status" role="status" aria-live="polite"></div>
+      <div class="controls" role="group" aria-label="Controles do globo">
+        <button id="c-in" aria-label="Aproximar">＋</button>
+        <button id="c-out" aria-label="Afastar">−</button>
+        <button id="c-left" aria-label="Girar para a esquerda">◀</button>
+        <button id="c-right" aria-label="Girar para a direita">▶</button>
+        <button id="c-home" aria-label="Recentralizar">⌖</button>
+        <button id="c-auto" aria-label="Pausar rotação automática" aria-pressed="true">⏸</button>
+      </div>
+      <div class="hint" id="hint">Arraste para girar · role para aproximar · toque em um ponto âmbar</div>
+
+      <div class="module" id="view-linha" hidden></div>
+      <div class="module" id="view-arquivo" hidden></div>
+    </section>
+
+    <aside class="right" id="right" aria-label="Detalhes do acontecimento" hidden></aside>
+  </main>
+
+  <footer class="timebar" id="timebar">
+    <div class="tb-top">
+      <button class="icon-btn" id="t-play" aria-label="Reproduzir sequência">▶</button>
+      <div class="tb-year"><span id="t-year"></span><span class="muted" id="t-win"></span></div>
+      <div class="periods" id="periods" role="group" aria-label="Períodos históricos"></div>
+      <button class="link" id="t-all">Todo o período</button>
+    </div>
+    <input type="range" id="t-slider" min="0" max="1000" step="1" aria-label="Marcador temporal" />
+    <div class="tb-marks" id="t-marks" aria-hidden="true"></div>
+  </footer>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
